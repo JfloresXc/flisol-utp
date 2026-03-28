@@ -1,6 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  // Safelist dynamically-constructed animation delay classes
+  safelist: [
+    'delay-100',
+    'delay-200',
+    'delay-300',
+    'delay-400',
+    'delay-500',
+    'delay-600',
+    'delay-700',
+    'animate-fade-in-up',
+    'animate-fade-in',
+    'animate-slide-in-left',
+    'animate-slide-in-right',
+  ],
   theme: {
     extend: {
       colors: {
@@ -27,4 +41,3 @@ export default {
   },
   plugins: [],
 }
-

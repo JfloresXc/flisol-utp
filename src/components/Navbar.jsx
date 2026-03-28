@@ -1,15 +1,11 @@
-import { useEffect, useState } from 'react'
-
-const navLinks = [
-  { label: 'Inicio', href: '#inicio' },
-  { label: '¿Qué es FLISoL?', href: '#que-es-flisol' },
-  { label: 'Actividades', href: '#actividades' },
-  { label: 'Speakers', href: '#speakers' },
-  { label: '¡Participa!', href: '#participa' },
-]
+import { useEffect, useState, useRef } from 'react'
+import { NAV_LINKS, EVENT } from '../constants/eventData'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const menuRef = useRef(null)
+  const buttonRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +18,38 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (
+        mobileOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(e.target)
+      ) {
+        setMobileOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [mobileOpen])
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileOpen])
+
+  const closeMobile = () => setMobileOpen(false)
+
   return (
     <header
       className={`fixed left-0 top-0 z-50 w-full border-b transition-all duration-300 ${
@@ -30,17 +58,21 @@ function Navbar() {
           : 'border-transparent bg-black/25 backdrop-blur-md'
       }`}
     >
-      <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
-        <a href="#inicio" className="shrink-0">
+      <nav
+        className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8"
+        aria-label="Navegación principal"
+      >
+        <a href="#inicio" className="shrink-0" aria-label="Ir al inicio">
           <img
-            src="/images/lead-utp-logo.png"
-            alt="Logo LEAD UTP"
+            src={EVENT.logoLead}
+            alt="Logo LEAD UTP – comunidad organizadora de FLISoL UTP"
             className="h-10 w-auto rounded-sm"
           />
         </a>
 
+        {/* Desktop nav */}
         <ul className="hidden items-center gap-6 text-sm text-zinc-200 md:flex">
-          {navLinks.map((link) => (
+          {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
@@ -54,15 +86,97 @@ function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href="https://sessionize.com/flisol-utp-2026"
+            href={EVENT.sessionizeUrl}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full bg-flisol-orange px-4 py-2 text-sm font-semibold text-white transition duration-300 hover:scale-105 hover:bg-orange-500"
+            className="hidden rounded-full bg-flisol-orange px-4 py-2 text-sm font-semibold text-white transition duration-300 hover:scale-105 hover:bg-orange-500 sm:inline-flex"
           >
             Sé ponente
           </a>
+
+          {/* Hamburger button */}
+          <button
+            ref={buttonRef}
+            onClick={() => setMobileOpen((prev) => !prev)}
+            className="relative z-50 flex h-10 w-10 items-center justify-center rounded-lg text-zinc-200 transition-colors hover:text-white md:hidden"
+            aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+          >
+            <div className="flex w-5 flex-col items-center gap-[5px]">
+              <span
+                className={`block h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
+                  mobileOpen ? 'translate-y-[7px] rotate-45' : ''
+                }`}
+              />
+              <span
+                className={`block h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
+                  mobileOpen ? 'scale-x-0 opacity-0' : ''
+                }`}
+              />
+              <span
+                className={`block h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
+                  mobileOpen ? '-translate-y-[7px] -rotate-45' : ''
+                }`}
+              />
+            </div>
+          </button>
         </div>
       </nav>
+
+      {/* Mobile overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+          mobileOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        aria-hidden="true"
+        onClick={closeMobile}
+      />
+
+      {/* Mobile drawer */}
+      <div
+        ref={menuRef}
+        id="mobile-nav"
+        role="navigation"
+        aria-label="Menú móvil"
+        className={`fixed right-0 top-0 z-40 flex h-full w-72 flex-col bg-zinc-950/95 backdrop-blur-xl transition-transform duration-300 ease-in-out md:hidden ${
+          mobileOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex h-20 items-center px-6">
+          <img
+            src={EVENT.logoFlisol}
+            alt="Logo FLISoL"
+            className="h-8 w-auto"
+          />
+        </div>
+
+        <ul className="flex flex-col gap-1 px-4 pt-2">
+          {NAV_LINKS.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                onClick={closeMobile}
+                className="block rounded-xl px-4 py-3 text-base font-medium text-zinc-200 transition-colors duration-200 hover:bg-white/5 hover:text-flisol-orange"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-auto border-t border-white/10 p-4">
+          <a
+            href={EVENT.sessionizeUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={closeMobile}
+            className="block rounded-full bg-flisol-orange px-6 py-3 text-center text-sm font-semibold text-white transition duration-300 hover:bg-orange-500"
+          >
+            Sé ponente →
+          </a>
+        </div>
+      </div>
     </header>
   )
 }
