@@ -143,7 +143,7 @@ function Navbar() {
         id="mobile-nav"
         role="navigation"
         aria-label="Menú móvil"
-        className={`fixed right-0 top-0 z-40 flex h-full w-72 flex-col bg-zinc-950/95 backdrop-blur-xl transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed right-0 top-0 z-50 flex h-dvh w-1/2 min-w-[220px] flex-col overflow-y-auto bg-black transition-transform duration-300 ease-in-out md:hidden ${
           mobileOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >

@@ -60,7 +60,10 @@ function App() {
           </div>
         </section>
 
-        <section id="registro" className="bg-flisol-slate flex min-h-dvh flex-col items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
+        <section
+          id="registro"
+          className="bg-flisol-slate flex min-h-[calc(100dvh-5rem)] box-border flex-col items-center justify-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8"
+        >
           <Register />
         </section>
       </main>
