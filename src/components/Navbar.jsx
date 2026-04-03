@@ -86,12 +86,16 @@ function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href={EVENT.sessionizeUrl}
-            target="_blank"
-            rel="noreferrer"
+            href="#generar-pase"
             className="hidden rounded-full bg-flisol-orange px-4 py-2 text-sm font-semibold text-white transition duration-300 hover:scale-105 hover:bg-orange-500 sm:inline-flex"
           >
-            Sé ponente
+            Generar pase
+          </a>
+          <a
+            href="#registro"
+            className="hidden rounded-full border border-flisol-orange/60 bg-white/5 px-4 py-2 text-sm font-semibold text-flisol-orange transition duration-300 hover:scale-105 hover:bg-flisol-orange hover:text-white sm:inline-flex"
+          >
+            Inscríbete
           </a>
 
           {/* Hamburger button */}
@@ -165,15 +169,20 @@ function Navbar() {
           ))}
         </ul>
 
-        <div className="mt-auto border-t border-white/10 p-4">
+        <div className="mt-auto border-t border-white/10 p-4 flex flex-col gap-3">
           <a
-            href={EVENT.sessionizeUrl}
-            target="_blank"
-            rel="noreferrer"
+            href="#generar-pase"
             onClick={closeMobile}
             className="block rounded-full bg-flisol-orange px-6 py-3 text-center text-sm font-semibold text-white transition duration-300 hover:bg-orange-500"
           >
-            Sé ponente →
+            Generar pase →
+          </a>
+          <a
+            href="#registro"
+            onClick={closeMobile}
+            className="block rounded-full border border-flisol-orange/60 bg-white/5 px-6 py-3 text-center text-sm font-semibold text-flisol-orange transition duration-300 hover:bg-flisol-orange hover:text-white"
+          >
+            Inscríbete →
           </a>
         </div>
       </div>

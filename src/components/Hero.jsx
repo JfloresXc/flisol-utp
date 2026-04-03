@@ -55,14 +55,11 @@ function Hero() {
 
           <div className="order-2 lg:order-2 lg:justify-self-end text-center">
             <div className="inline-flex animate-pulse rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-zinc-100 sm:text-sm animate-fade-in">
-              🌎 {EVENT.dateShort} · {EVENT.city}, {EVENT.country} · {EVENT.costShort}
+              {EVENT.dateShort} · UTP Torre Arequipa, Lima, Perú
             </div>
 
             <h1 className="mt-6 max-w-3xl text-4xl font-extrabold leading-tight sm:text-5xl lg:text-7xl animate-fade-in-up delay-100">
-              FLISoL {EVENT.year}
-              <span className="block text-flisol-orange">
-                {EVENT.city} UTP
-              </span>
+              FLISoL <span className="text-flisol-orange">UTP</span> {EVENT.year}
             </h1>
 
             <p className="mt-6 text-lg text-zinc-100 sm:text-xl animate-fade-in-up delay-200">
@@ -82,6 +79,12 @@ function Hero() {
                 className="inline-flex items-center justify-center rounded-full bg-flisol-orange px-7 py-3 text-base font-semibold text-white transition duration-300 hover:scale-105 hover:bg-orange-500 focus-visible:ring-2 focus-visible:ring-flisol-orange focus-visible:ring-offset-2 focus-visible:ring-offset-flisol-black"
               >
                 Sé ponente →
+              </a>
+              <a
+                href="#registro"
+                className="inline-flex items-center justify-center rounded-full bg-white/10 border border-flisol-orange/60 px-7 py-3 text-base font-semibold text-flisol-orange transition duration-300 hover:scale-105 hover:bg-flisol-orange hover:text-white focus-visible:ring-2 focus-visible:ring-flisol-orange focus-visible:ring-offset-2 focus-visible:ring-offset-flisol-black"
+              >
+                Inscríbete →
               </a>
               <a
                 href="#que-es-flisol"

@@ -6,6 +6,8 @@ import Schedule from './components/Schedule'
 import CallForSpeakers from './components/CallForSpeakers'
 import Sponsors from './components/Sponsors'
 import PracticalInfo from './components/PracticalInfo'
+import TicketGenerator from './components/TicketGenerator'
+import Register from './components/Register'
 import Footer from './components/Footer'
 
 function App() {
@@ -50,6 +52,16 @@ function App() {
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <PracticalInfo />
           </div>
+        </section>
+
+        <section id="generar-pase" className="flex min-h-dvh flex-col justify-center py-10 sm:py-12">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <TicketGenerator />
+          </div>
+        </section>
+
+        <section id="registro" className="bg-flisol-slate flex min-h-dvh flex-col items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
+          <Register />
         </section>
       </main>
 

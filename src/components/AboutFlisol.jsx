@@ -9,13 +9,17 @@ function AboutFlisol() {
     <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
       {/* Texto – centrado en mobile/tablet, alineado a la izquierda en desktop */}
       <div className="animate-fade-in-up text-center lg:text-left">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-flisol-orange">
+        <p className="mb-3 text-center text-sm font-semibold uppercase tracking-[0.2em] text-flisol-orange lg:text-center">
           ¿Qué es FLISoL?
         </p>
-        <h2 className="text-3xl font-bold sm:text-4xl">
-          Comunidad, libertad y conocimiento
+        <h2 className="flex justify-center">
+          <img
+            src="/images/flisol-logo.png"
+            alt="FLISoL"
+            className="h-auto w-full max-w-xs sm:max-w-sm"
+          />
         </h2>
-        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg lg:mx-0">
+        <p className="mx-auto mt-5 max-w-xl text-justify text-base leading-relaxed text-zinc-300 sm:text-lg lg:mx-0">
           El Festival Latinoamericano de Instalación de Software Libre (FLISoL) es
           el evento de difusión de Software Libre más grande de Latinoamérica,
           realizado simultáneamente en decenas de ciudades desde 2005. La entrada

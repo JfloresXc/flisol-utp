@@ -39,7 +39,7 @@ export const EVENT = {
   cfpDeadlineShort: '17 Abr 2026',
 
   // Imágenes
-  logoFlisol: '/images/flisol-logo.png',
+  logoFlisol: '/images/flisol-utp-logo.svg',
   logoLead: '/images/lead-utp-logo.png',
 
   // SEO
