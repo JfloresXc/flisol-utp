@@ -67,7 +67,7 @@ function Hero() {
             </p>
 
             <p className="mt-4 max-w-3xl text-base text-flisol-muted sm:text-lg animate-fade-in-up delay-300">
-              Un día entero de charlas, talleres e instalaciones de software libre.
+              Un día entero de charlas y talleres de software libre.
               Organizado por {EVENT.organizer}.
             </p>
 

@@ -35,8 +35,8 @@ export const EVENT = {
   websiteUrl: 'https://flisolutp.tech',
 
   // Call for Speakers
-  cfpDeadline: '17 de abril de 2026',
-  cfpDeadlineShort: '17 Abr 2026',
+  cfpDeadline: '15 de abril de 2026',
+  cfpDeadlineShort: '15 Abr 2026',
 
   // Imágenes
   logoFlisol: '/images/flisol-utp-logo.png',
