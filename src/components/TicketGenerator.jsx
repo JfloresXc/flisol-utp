@@ -1,9 +1,9 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 
 const TEMPLATE_SRC = '/images/plantilla-pase.jpg'
-// Template original: 3375 x 4219  →  canvas scaled down keeping ratio
-const CANVAS_W = 540
-const CANVAS_H = Math.round(540 * (4219 / 3375)) // ≈ 675
+// Template original: 3375 x 4219  →  canvas with higher resolution (4:5 ratio)
+const CANVAS_W = 1600
+const CANVAS_H = 2000 // Maintains 4:5 ratio for high quality download
 
 function TicketGenerator() {
   const [name, setName] = useState('')
@@ -57,7 +57,7 @@ function TicketGenerator() {
         img.onload = () => {
           // White/light circle border
           ctx.beginPath()
-          ctx.arc(circleX, circleY, circleR + 4, 0, Math.PI * 2)
+          ctx.arc(circleX, circleY, circleR + 12, 0, Math.PI * 2)
           ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
           ctx.fill()
 
@@ -87,7 +87,7 @@ function TicketGenerator() {
       } else {
         // Placeholder circle
         ctx.beginPath()
-        ctx.arc(circleX, circleY, circleR + 4, 0, Math.PI * 2)
+        ctx.arc(circleX, circleY, circleR + 12, 0, Math.PI * 2)
         ctx.fillStyle = 'rgba(255, 255, 255, 0.15)'
         ctx.fill()
 
@@ -97,7 +97,7 @@ function TicketGenerator() {
         ctx.fill()
 
         ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
-        ctx.font = '48px Inter, system-ui, sans-serif'
+        ctx.font = '140px Inter, system-ui, sans-serif'
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
         ctx.fillText('?', circleX, circleY)
@@ -108,21 +108,21 @@ function TicketGenerator() {
 
       function drawTicketText(ctx, w, h) {
         // Position name below photo circle
-        const nameY = h * 0.52 + w * 0.18 + 45 // circleY + circleR + spacing
+        const nameY = h * 0.52 + w * 0.18 + 130 // circleY + circleR + spacing
 
         // Name pill
         const displayName = name || 'NOMBRE Y APELLIDO'
-        ctx.font = 'bold 18px Inter, system-ui, sans-serif'
+        ctx.font = 'bold 52px Inter, system-ui, sans-serif'
         ctx.textAlign = 'center'
-        const nameWidth = ctx.measureText(displayName.toUpperCase()).width + 36
+        const nameWidth = ctx.measureText(displayName.toUpperCase()).width + 100
         const pillX = (w - nameWidth) / 2
-        const pillH = 34
-        const pillY = nameY - pillH / 2 - 4
+        const pillH = 100
+        const pillY = nameY - pillH / 2 - 12
 
         // Orange pill background
         ctx.fillStyle = '#f97316'
         ctx.beginPath()
-        ctx.roundRect(pillX, pillY, nameWidth, pillH, 17)
+        ctx.roundRect(pillX, pillY, nameWidth, pillH, 50)
         ctx.fill()
 
         ctx.fillStyle = '#ffffff'
@@ -131,8 +131,8 @@ function TicketGenerator() {
         // Role
         const displayRole = role || 'TU ROL'
         ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
-        ctx.font = '16px Inter, system-ui, sans-serif'
-        ctx.fillText(displayRole, w / 2, nameY + 30)
+        ctx.font = '46px Inter, system-ui, sans-serif'
+        ctx.fillText(displayRole, w / 2, nameY + 88)
       }
     },
     [name, role, photoPreview, templateImg],
