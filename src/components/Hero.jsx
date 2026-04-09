@@ -76,34 +76,34 @@ function Hero() {
                 href={EVENT.sessionizeUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-flisol-orange px-7 py-3 text-base font-semibold text-white transition duration-300 hover:scale-105 hover:bg-orange-500 focus-visible:ring-2 focus-visible:ring-flisol-orange focus-visible:ring-offset-2 focus-visible:ring-offset-flisol-black"
+                className="inline-flex items-center justify-center rounded-full bg-flisol-orange px-6 py-2.5 text-sm font-semibold text-white transition duration-300 hover:scale-105 hover:bg-orange-500 focus-visible:ring-2 focus-visible:ring-flisol-orange focus-visible:ring-offset-2 focus-visible:ring-offset-flisol-black"
               >
                 Sé ponente →
               </a>
               <a
                 href="#registro"
-                className="inline-flex items-center justify-center rounded-full bg-white/10 border border-flisol-orange/60 px-7 py-3 text-base font-semibold text-flisol-orange transition duration-300 hover:scale-105 hover:bg-flisol-orange hover:text-white focus-visible:ring-2 focus-visible:ring-flisol-orange focus-visible:ring-offset-2 focus-visible:ring-offset-flisol-black"
+                className="inline-flex items-center justify-center rounded-full bg-white/10 border border-flisol-orange/60 px-6 py-2.5 text-sm font-semibold text-flisol-orange transition duration-300 hover:scale-105 hover:bg-flisol-orange hover:text-white focus-visible:ring-2 focus-visible:ring-flisol-orange focus-visible:ring-offset-2 focus-visible:ring-offset-flisol-black"
               >
                 Inscríbete →
               </a>
               <a
                 href="#que-es-flisol"
-                className="inline-flex items-center justify-center rounded-full border border-white/40 px-7 py-3 text-base font-semibold text-white transition duration-300 hover:scale-105 hover:border-white"
+                className="inline-flex items-center justify-center rounded-full border border-white/40 px-6 py-2.5 text-sm font-semibold text-white transition duration-300 hover:scale-105 hover:border-white"
               >
                 ¿Qué es FLISoL?
               </a>
             </div>
 
-            <div className="mt-10 grid grid-cols-4 gap-2 sm:gap-3 mx-auto w-full animate-fade-in-up delay-500">
+            <div className="mt-10 mx-auto grid w-full max-w-3xl grid-cols-4 gap-2 sm:gap-2.5 animate-fade-in-up delay-500">
               {timerBlocks.map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-2 sm:p-4 text-center shadow-glow transition-all duration-500 hover:border-flisol-orange/40 hover:bg-white/[0.08]"
+                  className="rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-2 sm:p-3 text-center shadow-glow transition-all duration-500 hover:border-flisol-orange/40 hover:bg-white/[0.08]"
                 >
-                  <div className="text-xl sm:text-3xl lg:text-4xl font-bold tabular-nums text-white" aria-label={`${item.value} ${item.label}`}>
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-white" aria-label={`${item.value} ${item.label}`}>
                     {String(item.value).padStart(2, '0')}
                   </div>
-                  <div className="mt-1 text-[9px] sm:text-xs uppercase tracking-wide text-flisol-muted">
+                  <div className="mt-1 text-[9px] sm:text-[11px] uppercase tracking-wide text-flisol-muted">
                     {item.label}
                   </div>
                 </div>

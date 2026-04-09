@@ -56,7 +56,6 @@ export const NAV_LINKS = [
   { label: 'Agenda', href: '#agenda' },
   { label: 'Speakers', href: '#speakers' },
   { label: 'Patrocinadores', href: '#patrocinadores' },
-  { label: '¡Participa!', href: '#participa' },
 ]
 
 export const SCHEDULE = [

@@ -86,16 +86,18 @@ function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#generar-pase"
-            className="hidden rounded-full bg-flisol-orange px-4 py-2 text-sm font-semibold text-white transition duration-300 hover:scale-105 hover:bg-orange-500 sm:inline-flex"
-          >
-            Generar pase
-          </a>
-          <a
             href="#registro"
             className="hidden rounded-full border border-flisol-orange/60 bg-white/5 px-4 py-2 text-sm font-semibold text-flisol-orange transition duration-300 hover:scale-105 hover:bg-flisol-orange hover:text-white sm:inline-flex"
           >
             Inscríbete
+          </a>
+          <a
+            href="https://canva.link/iv45mu82tasxn3d"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden rounded-full border border-flisol-orange px-4 py-2 text-sm font-semibold text-white bg-flisol-orange transition duration-300 hover:scale-105 hover:bg-orange-500 sm:inline-flex"
+          >
+            Se Sponsor
           </a>
 
           {/* Hamburger button */}
