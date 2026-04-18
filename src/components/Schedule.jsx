@@ -1,159 +1,161 @@
+import { motion } from 'framer-motion'
+import { Clock, MapPin, User, ChevronRight, Laptop, Calendar, Award, Zap, Timer, Terminal } from 'lucide-react'
 import { SCHEDULE } from '../constants/eventData'
 import { speakersData } from '../constants/speakersData'
 
 const typeStyles = {
-  opening: {
-    dot: 'bg-emerald-400',
-    badge: 'bg-emerald-400/10 text-emerald-400 border-emerald-400/20',
-    label: 'Apertura',
+  opening: { color: 'text-emerald-400', border: 'border-emerald-500/30', glow: 'shadow-emerald-500/20' },
+  talk: { color: 'text-sky-400', border: 'border-sky-500/30', glow: 'shadow-sky-500/20' },
+  workshop: { color: 'text-violet-400', border: 'border-violet-500/30', glow: 'shadow-violet-500/20' },
+  break: { color: 'text-zinc-500', border: 'border-zinc-500/30', glow: 'shadow-zinc-500/20' },
+  activity: { color: 'text-yellow-400', border: 'border-yellow-500/30', glow: 'shadow-yellow-500/20' },
+  closing: { color: 'text-flisol-orange', border: 'border-flisol-orange/30', glow: 'shadow-flisol-orange/20' },
+}
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08 },
   },
-  talk: {
-    dot: 'bg-sky-400',
-    badge: 'bg-sky-400/10 text-sky-400 border-sky-400/20',
-    label: 'Charla',
-  },
-  workshop: {
-    dot: 'bg-violet-400',
-    badge: 'bg-violet-400/10 text-violet-400 border-violet-400/20',
-    label: 'Taller',
-  },
-  break: {
-    dot: 'bg-zinc-500',
-    badge: 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20',
-    label: 'Receso',
-  },
-  activity: {
-    dot: 'bg-yellow-400',
-    badge: 'bg-yellow-400/10 text-yellow-400 border-yellow-400/20',
-    label: 'Dinámica',
-  },
-  closing: {
-    dot: 'bg-flisol-orange',
-    badge: 'bg-flisol-orange/10 text-flisol-orange border-flisol-orange/20',
-    label: 'Cierre',
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
   },
 }
 
 function Schedule() {
   return (
-    <div className="animate-fade-in-up">
-      <div className="text-center">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-flisol-orange">
-          Programa del día
-        </p>
-        <h2 className="text-3xl font-bold sm:text-4xl">Agenda oficial</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-flisol-muted sm:text-lg">
-          ¡Acompáñanos a disfrutar de estas grandes ponencias!
-        </p>
-        
-        <div className="mt-6 flex justify-center animate-fade-in-up delay-200">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-zinc-300 shadow-sm backdrop-blur-sm">
-            <svg className="h-4 w-4 text-flisol-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            Auditorio UTP Torre Arequipa, Lima
+    <section id="agenda-internal" className="relative pb-20">
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+        className="relative mx-auto max-w-6xl"
+      >
+        {/* Massive Editorial Header - Manteniendo la potencia */}
+        <div className="mb-24 space-y-8 px-4 sm:px-0">
+          <motion.div variants={itemVariants} className="flex items-center gap-4 text-flisol-orange">
+            <div className="h-px w-12 bg-flisol-orange/50" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em]">Protocolo de Eventos</span>
+          </motion.div>
+          
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+            <motion.h2 variants={itemVariants} className="font-display text-7xl md:text-9xl font-black text-white leading-[0.8] tracking-tighter">
+              AGENDA <br />
+              <span className="text-white/10 outline-text uppercase">OFICIAL</span>
+            </motion.h2>
+            
+            <div className="flex flex-wrap gap-2 md:gap-4 max-w-md lg:text-right lg:justify-end">
+               <p className="text-zinc-500 text-sm font-light leading-relaxed italic">
+                 Sincroniza tu reloj con la jornada más intensa de conocimiento libre.
+               </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Timeline */}
-      <div className="relative mt-10">
-        {/* Vertical line */}
-        <div
-          className="absolute left-[7px] top-2 hidden h-[calc(100%-1rem)] w-px bg-gradient-to-b from-flisol-orange/60 via-white/10 to-transparent sm:block"
-          aria-hidden="true"
-        />
+        {/* The Harmonious Technical Timeline */}
+        <div className="space-y-4 relative px-4 sm:px-0">
+          {/* Vertical Backbone (Hidden in small mobile, visible from sm) */}
+          <div className="absolute left-0 top-0 bottom-0 w-px bg-white/5 hidden sm:block" />
 
-        <ol className="space-y-3">
           {SCHEDULE.map((item, index) => {
             const style = typeStyles[item.type] || typeStyles.break
-
-            // Intentamos buscar el ponente comparando el título de la sesión o si su nombre aparece en la descripción
-            const speaker = speakersData.find((s) => {
-              if (s.sessionTitle === item.title) return true
-              if (item.title.includes('opencode') && s.sessionTitle.includes('opencode')) return true
-              if (item.title.includes('Gemma 4') && s.sessionTitle.includes('Gemma 4')) return true
-              if (item.description && item.description.includes(s.name.split(' ')[0])) return true
-              return false
-            })
+            const speaker = speakersData.find((s) => 
+              s.sessionTitle === item.title || item.title.includes(s.name.split(' ')[0])
+            )
 
             return (
-              <li
+              <motion.div 
                 key={index}
-                className={`group relative flex flex-col gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-5 transition duration-300 hover:border-white/10 hover:bg-white/[0.02] sm:ml-8 animate-fade-in-up delay-${Math.min((index + 1) * 100, 700)}`}
+                variants={itemVariants}
+                className="group relative grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-4 sm:gap-12"
               >
-                {/* Dot */}
-                <span
-                  className={`absolute -left-[32px] top-6 hidden h-[15px] w-[15px] rounded-full border-2 border-flisol-black sm:block ${style.dot}`}
-                  style={{ marginLeft: '1px' }}
-                  aria-hidden="true"
-                />
-
-                {/* header de la card: Time & Badge (status) */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm font-semibold tabular-nums text-zinc-400">
-                      {item.time}
-                    </span>
-                    <span
-                      className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${style.badge}`}
-                    >
-                      {style.label}
-                    </span>
+                {/* Time Anchor - Editorial Style */}
+                <div className="relative pt-2 sm:text-right">
+                  <div className={`font-display text-4xl sm:text-5xl font-black tabular-nums transition-colors duration-500 ${style.color} sm:opacity-40 group-hover:opacity-100`}>
+                    {item.time.split(':')[0]}<span className="text-white/20">:</span>{item.time.split(':')[1]}
                   </div>
-                  {/* Track en la derecha (solo visible en pantallas medianas o si es necesario, o en su lugar aquí) */}
-                  {speaker && speaker.track && (
-                    <span className="hidden sm:inline-flex items-center rounded-full bg-sky-400/10 border border-sky-400/20 px-3 py-1 text-[11px] font-semibold text-sky-400 whitespace-nowrap">
-                      {speaker.track}
-                    </span>
-                  )}
+                  <div className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-600 mt-1 sm:justify-end flex items-center gap-2">
+                    <span className={`h-1 w-1 rounded-full ${style.color.replace('text', 'bg')}`} />
+                    T-MINUS SYNC
+                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-xl font-bold text-white">
-                    {item.title}
-                  </h3>
-
-                  {speaker ? (
-                    <div className="flex flex-wrap items-center justify-between gap-4">
-                      
-                      {/* Avatar e info del autor */}
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={speaker.image}
-                          alt={speaker.name}
-                          loading="lazy"
-                          className="h-10 w-10 shrink-0 rounded-full border border-white/10 object-cover"
-                        />
-                        <span className="text-sm font-medium text-zinc-300">
-                          {speaker.name}
-                        </span>
+                {/* Content Module - Harmonic & Borderless */}
+                <div className="relative pb-12 sm:pb-16">
+                  {/* Visual Connection Line (The Spine) */}
+                  <div className={`absolute -left-[49px] top-8 bottom-0 w-[2px] hidden sm:block transition-colors duration-500 ${style.color.replace('text', 'bg')} opacity-0 group-hover:opacity-50`} />
+                  
+                  <div className="relative space-y-4">
+                    {/* Header: Type & Metadata */}
+                    <div className="flex items-center gap-4">
+                      <div className={`px-2 py-0.5 rounded border ${style.border} bg-zinc-950 text-[9px] font-bold uppercase tracking-widest ${style.color}`}>
+                        {item.type}
                       </div>
-
-                      {/* Track en móvil, debajo del autor */}
-                      {speaker.track && (
-                        <span className="sm:hidden inline-flex items-center rounded-full bg-sky-400/10 border border-sky-400/20 px-3 py-1 text-[11px] font-semibold text-sky-400 whitespace-nowrap">
-                          {speaker.track}
-                        </span>
-                      )}
-
+                      <div className="h-px flex-1 bg-white/5 group-hover:bg-white/10 transition-colors" />
+                      <div className="text-[8px] font-mono text-zinc-800">0xFL_2026_{index}</div>
                     </div>
-                  ) : (
-                    item.description && (
-                      <p className="text-sm text-flisol-muted">
-                        {item.description}
-                      </p>
-                    )
-                  )}
+
+                    {/* Title: Pure Impact */}
+                    <h3 className="font-display text-2xl md:text-4xl font-bold text-white leading-tight tracking-tight group-hover:text-flisol-orange transition-colors duration-300">
+                      {item.title}
+                    </h3>
+
+                    {/* Speaker or Description: Balanced Layout */}
+                    {speaker ? (
+                      <div className="flex items-center gap-4 pt-4">
+                        <div className="relative h-14 w-14 shrink-0">
+                          <div className={`absolute -inset-1 rounded-2xl blur-sm opacity-20 ${style.bg}`} />
+                          <img 
+                            src={speaker.image} 
+                            alt={speaker.name} 
+                            className="relative h-full w-full object-cover rounded-2xl transition-all duration-700" 
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm font-bold text-white uppercase tracking-tight">{speaker.name}</p>
+                          <div className="flex items-center gap-2">
+                            <Terminal className="h-3 w-3 text-flisol-orange/60" />
+                            <span className="text-[10px] font-medium text-zinc-500 uppercase tracking-widest">{speaker.track}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      item.description && (
+                        <p className="text-sm md:text-lg text-zinc-400 leading-relaxed font-light max-w-2xl">
+                          {item.description}
+                        </p>
+                      )
+                    )}
+                  </div>
+
+                  {/* Mobile Bottom Border - Decorative only */}
+                  <div className="absolute bottom-6 left-0 right-0 h-px bg-gradient-to-r from-white/5 via-transparent to-transparent sm:hidden" />
                 </div>
-              </li>
+              </motion.div>
             )
           })}
-        </ol>
-      </div>
-    </div>
+        </div>
+
+        {/* Footer Technical Note */}
+        <motion.div variants={itemVariants} className="mt-12 flex flex-col items-center gap-6">
+          <div className="h-px w-24 bg-zinc-800" />
+          <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-600">
+            <MapPin className="h-3 w-3 text-flisol-orange" />
+            Auditorio UTP Torre Arequipa
+            <span className="text-zinc-800">//</span>
+            Lima - Perú
+          </div>
+        </motion.div>
+      </motion.div>
+    </section>
   )
 }
 
