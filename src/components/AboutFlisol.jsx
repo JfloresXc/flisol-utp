@@ -81,10 +81,6 @@ function AboutFlisol() {
 
           <motion.div variants={itemVariants} className="flex items-center gap-8 pt-4">
             <div className="flex flex-col gap-1">
-              <span className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest">Protocolo</span>
-              <img src="/images/flisol-logo.png" alt="FLISoL" className="h-8 w-auto opacity-40 grayscale" />
-            </div>
-            <div className="flex flex-col gap-1">
               <span className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest">Organiza</span>
               <span className="font-display font-bold text-white tracking-tighter">LEAD UTP</span>
             </div>

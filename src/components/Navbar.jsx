@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Zap, Info, Calendar, Users, Heart } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { EVENT } from '../constants/eventData'
 
 const navLinks = [
-  { name: 'Qué es', href: '#que-es-flisol', icon: <Info className="h-4 w-4" /> },
-  { name: 'Speakers', href: '#speakers', icon: <Users className="h-4 w-4" /> },
-  { name: 'Agenda', href: '#agenda', icon: <Calendar className="h-4 w-4" /> },
-  { name: 'Actividades', href: '#actividades', icon: <Zap className="h-4 w-4" /> },
-  { name: 'Patrocinadores', href: '#patrocinadores', icon: <Heart className="h-4 w-4" /> },
+  { name: 'Qué es', href: '#que-es-flisol' },
+  { name: 'Speakers', href: '#speakers' },
+  { name: 'Agenda', href: '#agenda' },
+  { name: 'Actividades', href: '#actividades' },
+  { name: 'Aliados', href: '#patrocinadores' },
 ]
 
 function Navbar() {
@@ -52,7 +52,7 @@ function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="group relative flex items-center gap-2 rounded-lg px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-zinc-400 transition-all hover:text-white"
+              className="group relative flex items-center gap-2 rounded-lg px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-zinc-400 transition-all hover:text-white"
             >
               <span className="opacity-0 group-hover:opacity-100 transition-opacity text-flisol-orange">[</span>
               {link.name}
@@ -65,7 +65,7 @@ function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href="#registro"
-            className="hidden sm:inline-flex items-center justify-center rounded-xl bg-white px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] text-black transition-all hover:scale-105 shadow-glow hover:bg-flisol-orange hover:text-white"
+            className="hidden sm:inline-flex items-center justify-center rounded-full bg-white px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] text-black transition-all hover:scale-105 shadow-glow hover:bg-flisol-orange hover:text-white"
           >
             Inscribirme
           </a>
@@ -115,7 +115,7 @@ function Navbar() {
                     onClick={() => setIsOpen(false)}
                     className="group flex items-center gap-4"
                   >
-                    <div className="h-1 w-1 rounded-full bg-flisol-orange opacity-0 group-active:opacity-100 transition-opacity" />
+                    <div className="h-1 w-1 rounded-full bg-flisol-orange opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="font-display text-3xl font-bold text-white tracking-tight active:text-flisol-orange transition-colors">
                       {link.name}
                     </span>

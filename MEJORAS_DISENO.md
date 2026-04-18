@@ -10,6 +10,58 @@ La web abandona la estética de "plantilla de evento" para adoptar un look de **
 
 ---
 
+## 1.5 Principio General: Menos es más (Anti-relleno)
+
+> **El error más común en este proyecto es rellenar el espacio con elementos decorativos en lugar de dejar que el contenido respire.**
+
+Antes de añadir cualquier elemento (tag flotante, logo extra, decoración binaria, card wrapper, línea animada), hacerse estas preguntas:
+
+1. **¿Aporta información real?** Si no comunica nada nuevo, eliminarlo.
+2. **¿Compite con el elemento principal?** Si distrae del título o la CTA, eliminarlo.
+3. **¿Está duplicado en otro lugar?** El logo ya está en la Navbar — no repetirlo en el Hero.
+4. **¿Añade capas sin añadir profundidad?** Un card dentro de un card dentro de una sección es ruido, no diseño.
+
+### Qué evitar
+
+| Patrón | Por qué es un error |
+|---|---|
+| Logo en Hero + Navbar | Duplicado — el usuario ya lo vio |
+| Card wrapper sobre countdown | Añade borde + padding + fondo innecesarios |
+| Decoración binaria / scanlines | Ruido visual que no comunica |
+| Tags flotantes con `hidden sm:` | Si no se ve en mobile, no aporta en desktop |
+| Descripción larga en Hero | El Hero vende, no explica — máximo 2 líneas |
+| Varios wrappers anidados | Genera peso visual y dificulta el mantenimiento |
+
+### Qué hacer en cambio
+
+- **Título que ocupa todo el ancho** — la tipografía masiva ES el diseño, no necesita decoración alrededor.
+- **Metadata inline** (fecha, lugar, acceso) como strip horizontal bajo las CTAs — conciso, sin tarjeta propia.
+- **Espacio en blanco intencionado** — el `min-h-dvh` con contenido centrado genera tensión editorial por sí solo.
+- **Un solo acento de color** por zona — no mezclar orange + purple + white en la misma área.
+- **Badge + línea** como eyebrow: el badge da contexto, la línea que se extiende da drama. Nada más.
+
+### Aplicación en el Hero (referencia)
+
+El Hero actual es el modelo a seguir para cualquier rediseño futuro:
+
+```
+[badge ——————————————————————————]   ← badge + línea, nada más
+[FLISOL                          ]   ← título fluid con clamp()
+[UTP      LIMA '26               ]   ← color + outline en la misma línea
+
+[descripción    |   countdown    ]   ← grid 2 col en desktop, stack en mobile
+[CTAs           |   00 00 00 00  ]
+[fecha · lugar · acceso gratuito ]   ← metadata inline, sin card
+```
+
+Título Hero usa `clamp()` para escala fluida sin breakpoints rígidos:
+```
+text-[clamp(4rem,14vw,10rem)]   ← FLISOL / UTP
+text-[clamp(2.8rem,9vw,6.5rem)] ← outline secundario
+```
+
+---
+
 ## 2. Fundamentos Visuales (Foundations)
 
 ### A. Tipografía
