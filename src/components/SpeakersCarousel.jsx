@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X, Terminal, Cpu } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { speakersData } from '../constants/speakersData.js';
+import { typography } from '../constants/designTokens';
 
 const LinkedinIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
 );
 
 const InstagramIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
 );
 
 const SpeakersCarousel = () => {
@@ -43,71 +44,71 @@ const SpeakersCarousel = () => {
   }, [isPaused, selectedSpeaker, slidesToShow]);
 
   return (
-    <section 
-      id="speakers-internal" 
-      className="relative py-20 overflow-hidden"
+    <section
+      id="speakers-internal"
+      className="relative overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Massive Editorial Header */}
-      <div className="mb-20 space-y-8 px-4 sm:px-0">
+      {/* Editorial Header */}
+      <div className="mb-12 space-y-6 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 text-flisol-orange">
           <div className="h-px w-12 bg-flisol-orange/50" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.4em]">Expertos de la Industria</span>
+          <span className={typography.sectionLabel}>Expertos de la Industria</span>
         </div>
-        
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
-          <h2 className="font-display text-6xl md:text-8xl font-black text-white leading-[0.8] tracking-tighter">
+
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <h2 className={typography.sectionTitle}>
             LÍDERES DE LA <br />
-            <span className="text-white/10 outline-text uppercase">REVOLUCIÓN</span>
+            <span className="outline-text text-white/10 uppercase">REVOLUCIÓN</span>
           </h2>
-          
+
           <div className="flex items-center gap-4">
-            <button onClick={prevSlide} className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white hover:bg-flisol-orange hover:border-flisol-orange transition-all duration-300 shadow-2xl">
-              <ChevronLeft className="h-6 w-6" />
+            <button onClick={prevSlide} className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white transition-all duration-300 hover:border-flisol-orange hover:bg-flisol-orange">
+              <ChevronLeft className="h-5 w-5" />
             </button>
-            <button onClick={nextSlide} className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white hover:bg-flisol-orange hover:border-flisol-orange transition-all duration-300 shadow-2xl">
-              <ChevronRight className="h-6 w-6" />
+            <button onClick={nextSlide} className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white transition-all duration-300 hover:border-flisol-orange hover:bg-flisol-orange">
+              <ChevronRight className="h-5 w-5" />
             </button>
           </div>
         </div>
       </div>
 
-      <div className="relative overflow-visible px-4 sm:px-0">
-        <motion.div 
+      <div className="relative overflow-visible px-4 sm:px-6 lg:px-8">
+        <motion.div
           className="flex transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           animate={{ x: `-${activeIndex * (100 / slidesToShow)}%` }}
         >
           {speakersData.map((speaker) => (
             <div key={speaker.id} className="flex-shrink-0 px-3 flex justify-center" style={{ width: `${100 / slidesToShow}%` }}>
-              <motion.div 
+              <motion.div
                 whileHover={{ y: -10 }}
                 onClick={() => setSelectedSpeaker(speaker)}
                 className="group relative cursor-pointer overflow-hidden rounded-[2.5rem] border border-white/10 bg-zinc-900/40 p-3 backdrop-blur-md transition-all hover:border-flisol-orange/30 hover:shadow-glow w-full max-w-sm"
               >
                 <div className="absolute top-4 right-4 z-10">
                   <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-black/60 border border-white/10 backdrop-blur-md">
-                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[8px] font-bold text-white uppercase tracking-widest">Live_Profile</span>
+                    <div className="h-1.5 w-1.5 rounded-full bg-flisol-orange animate-pulse" />
+                    <span className="text-[10px] font-bold text-white uppercase tracking-widest">Live_Profile</span>
                   </div>
                 </div>
 
                 <div className="aspect-square overflow-hidden rounded-[2rem] bg-zinc-800 border border-white/5">
                   <img src={speaker.image} alt={speaker.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 </div>
-                
+
                 <div className="p-6 space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-flisol-orange bg-flisol-orange/10 px-2 py-0.5 rounded-md border border-flisol-orange/20">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-flisol-orange bg-flisol-orange/10 px-2 py-0.5 rounded-md border border-flisol-orange/20">
                       {speaker.track}
                     </span>
-                    <span className="text-[8px] font-mono text-zinc-700 uppercase">id_{speaker.id}</span>
+
                   </div>
                   <div className="space-y-1">
-                    <h3 className="font-display text-2xl font-bold text-white group-hover:text-flisol-orange transition-colors">
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-flisol-orange transition-colors">
                       {speaker.name}
                     </h3>
-                    <p className="text-xs text-zinc-500 font-light truncate">{speaker.role}</p>
+                    <p className="text-sm text-zinc-500 font-light truncate">{speaker.role}</p>
                   </div>
                 </div>
 
@@ -120,12 +121,12 @@ const SpeakersCarousel = () => {
 
       <AnimatePresence>
         {selectedSpeaker && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-10 bg-flisol-black/95 backdrop-blur-2xl"
             onClick={() => setSelectedSpeaker(null)}
           >
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.95, y: 40, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} exit={{ scale: 0.95, y: 40, opacity: 0 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="relative max-w-5xl w-full bg-zinc-950 border border-white/10 rounded-[3rem] overflow-hidden shadow-2xl"

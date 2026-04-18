@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion'
 import { ExternalLink, Sparkles } from 'lucide-react'
+import { typography } from '../constants/designTokens'
 
 function Register() {
   return (
-    <section id="registro" className="w-full max-w-7xl px-4 py-20 mx-auto">
+    <section id="registro" className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -25,12 +26,12 @@ function Register() {
               Acceso Gratuito
             </motion.div>
             
-            <motion.h2 className="font-display text-6xl md:text-8xl font-black text-white leading-[0.8] tracking-tighter">
+            <motion.h2 className={typography.sectionTitleLarge}>
               TU PASE AL <br />
               <span className="text-white/20 outline-text uppercase text-center">FUTURO</span>
             </motion.h2>
-            
-            <p className="text-zinc-500 max-w-2xl mx-auto text-sm leading-relaxed font-medium">
+
+            <p className="text-zinc-500 max-w-2xl mx-auto text-base leading-relaxed font-medium">
               Obtén tu credencial digital personalizada y asegura tu lugar en la revolución del Software Libre.
             </p>
           </div>

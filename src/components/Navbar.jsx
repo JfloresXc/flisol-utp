@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Terminal, Cpu, Zap, Info, Calendar, Users, Heart } from 'lucide-react'
+import { Menu, X, Zap, Info, Calendar, Users, Heart } from 'lucide-react'
 import { EVENT } from '../constants/eventData'
 
 const navLinks = [
@@ -8,7 +8,7 @@ const navLinks = [
   { name: 'Speakers', href: '#speakers', icon: <Users className="h-4 w-4" /> },
   { name: 'Agenda', href: '#agenda', icon: <Calendar className="h-4 w-4" /> },
   { name: 'Actividades', href: '#actividades', icon: <Zap className="h-4 w-4" /> },
-  { name: 'Aliados', href: '#patrocinadores', icon: <Heart className="h-4 w-4" /> },
+  { name: 'Patrocinadores', href: '#patrocinadores', icon: <Heart className="h-4 w-4" /> },
 ]
 
 function Navbar() {
@@ -42,7 +42,7 @@ function Navbar() {
           <img
             src={EVENT.logoFlisol}
             alt="FLISoL UTP"
-            className="h-12 md:h-16 w-auto transition-all group-hover:scale-105"
+            className="h-12 md:h-14 w-auto transition-all group-hover:scale-105"
           />
         </a>
 

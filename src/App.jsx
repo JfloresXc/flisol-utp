@@ -24,13 +24,13 @@ function App() {
           </div>
         </section>
 
-        <section id="speakers" className="bg-flisol-black py-10 sm:py-16">
+        <section id="speakers" className="bg-flisol-black py-20 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SpeakersCarousel />
           </div>
         </section>
 
-        <section id="agenda" className="bg-flisol-slate pt-24 pb-20 sm:pt-32 sm:pb-24 relative overflow-hidden">
+        <section id="agenda" className="bg-flisol-slate py-20 sm:py-24 relative overflow-hidden">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <Schedule />
           </div>

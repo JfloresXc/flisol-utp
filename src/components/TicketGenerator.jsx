@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Download, Share2, User, Camera, Briefcase, Sparkles } from 'lucide-react'
+import { typography } from '../constants/designTokens'
 
 const TEMPLATE_SRC = '/images/plantilla-pase.jpg'
 const CANVAS_W = 1600
@@ -115,7 +116,7 @@ function TicketGenerator() {
   }
 
   return (
-    <section id="generar-pase" className="py-20">
+    <section id="generar-pase">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           
@@ -126,11 +127,11 @@ function TicketGenerator() {
             className="flex-1 space-y-10"
           >
             <div className="space-y-4">
-              <h2 className="font-display text-4xl font-bold sm:text-6xl text-white">
+              <h2 className={typography.sectionTitle}>
                 Tu entrada al <br />
                 <span className="text-flisol-orange">Futuro Libre</span>
               </h2>
-              <p className="text-zinc-400 text-lg max-w-md">
+              <p className="text-zinc-400 text-base max-w-md">
                 Personaliza tu credencial oficial, descárgala y únete a la comunidad más grande de Software Libre en Lima.
               </p>
             </div>
@@ -158,7 +159,7 @@ function TicketGenerator() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-zinc-500">
+                  <label className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
                     <User className="h-3 w-3" /> Nombre
                   </label>
                   <input
@@ -170,7 +171,7 @@ function TicketGenerator() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-zinc-500">
+                  <label className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
                     <Briefcase className="h-3 w-3" /> Tu Rol
                   </label>
                   <input
