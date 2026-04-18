@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="bg-flisol-black text-white">
+    <div className="bg-flisol-black text-white overflow-x-hidden">
       <Navbar />
 
       <main>
@@ -24,7 +24,7 @@ function App() {
           </div>
         </section>
 
-        <section id="speakers" className="bg-flisol-black py-20 sm:py-24">
+        <section id="speakers" className="bg-flisol-black py-20 sm:py-24 overflow-hidden">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SpeakersCarousel />
           </div>

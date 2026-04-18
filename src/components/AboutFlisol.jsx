@@ -34,7 +34,7 @@ const itemVariants = {
 
 function AboutFlisol() {
   return (
-    <div className="relative">
+    <div className="relative px-4 sm:px-6 lg:px-8">
       {/* Background Decorative Light */}
       <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-flisol-orange/10 blur-[120px] pointer-events-none opacity-40" />
 
@@ -71,7 +71,7 @@ function AboutFlisol() {
               <p className="text-xl md:text-2xl font-display font-medium text-white leading-tight">
                 "El FLISoL no es solo un evento, es la actualización masiva de nuestra libertad tecnológica."
               </p>
-              <p className="text-zinc-400 leading-relaxed text-justify font-light">
+              <p className="text-zinc-400 leading-relaxed font-light">
                 En la **Universidad Tecnológica del Perú**, reunimos a los arquitectos del futuro digital.
                 Nuestra misión es descentralizar el conocimiento y empoderar a cada estudiante con las herramientas
                 necesarias para construir un mundo más abierto, colaborativo y transparente.
