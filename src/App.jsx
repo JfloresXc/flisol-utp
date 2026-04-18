@@ -2,8 +2,8 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import AboutFlisol from './components/AboutFlisol'
 import Activities from './components/Activities'
+import SpeakersCarousel from './components/SpeakersCarousel'
 import Schedule from './components/Schedule'
-import CallForSpeakers from './components/CallForSpeakers'
 import Sponsors from './components/Sponsors'
 import PracticalInfo from './components/PracticalInfo'
 import TicketGenerator from './components/TicketGenerator'
@@ -30,15 +30,15 @@ function App() {
           </div>
         </section>
 
-        <section id="agenda" className="bg-flisol-slate py-20 sm:py-24">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <Schedule />
+        <section id="speakers" className="bg-flisol-black py-10 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <SpeakersCarousel />
           </div>
         </section>
 
-        <section id="speakers" className="py-20 sm:py-24">
+        <section id="agenda" className="bg-flisol-slate py-20 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <CallForSpeakers />
+            <Schedule />
           </div>
         </section>
 

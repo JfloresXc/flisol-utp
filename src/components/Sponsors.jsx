@@ -1,74 +1,64 @@
 import { EVENT } from '../constants/eventData'
 
-const sponsorTiers = [
-  { name: 'Oro', slots: 2, size: 'h-20 w-40' },
-  { name: 'Plata', slots: 3, size: 'h-16 w-32' },
-  { name: 'Bronce', slots: 4, size: 'h-14 w-28' },
-  { name: 'Comunidades aliadas', slots: 6, size: 'h-12 w-24' },
-]
-
 function Sponsors() {
   return (
-    <div className="animate-fade-in-up">
-      <div className="text-center">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-flisol-orange">
-          Aliados
-        </p>
-        <h2 className="text-3xl font-bold sm:text-4xl">
-          Patrocinadores y comunidades
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-flisol-muted sm:text-lg">
-          FLISoL UTP {EVENT.year} es posible gracias al apoyo de empresas y
-          comunidades que creen en el software libre.
-        </p>
-      </div>
+    <section className="sponsors relative flex flex-col items-center py-20 text-center">
+      <img
+        src="/images/sponsors-frame.svg"
+        alt=""
+        className="sponsors__frame absolute inset-0 -z-10 h-full w-full object-cover opacity-50"
+        aria-hidden="true"
+      />
+      <h2 className="sponsors__title mb-12 text-4xl font-bold uppercase tracking-wider text-white">Sponsors</h2>
 
-      {/* Sponsor tiers */}
-      <div className="mt-12 space-y-10">
-        {sponsorTiers.map((tier) => (
-          <div key={tier.name} className="animate-fade-in-up">
-            <h3 className="mb-5 text-center text-sm font-semibold uppercase tracking-widest text-zinc-400">
-              {tier.name}
-            </h3>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              {Array.from({ length: tier.slots }).map((_, i) => (
-                <div
-                  key={i}
-                  className={`${tier.size} flex items-center justify-center rounded-2xl border border-dashed border-white/15 bg-white/[0.02] text-xs text-zinc-500 transition duration-300 hover:border-flisol-orange/30 hover:bg-white/[0.04]`}
-                >
-                  <span className="select-none">Tu logo aquí</span>
-                </div>
-              ))}
-            </div>
+      <div className="mb-12 w-full max-w-4xl">
+        <h3 className="sponsors__tier mb-6 text-2xl font-semibold text-flisol-orange">Gold</h3>
+        <div className="sponsors__logos sponsors__logos--gold flex flex-wrap justify-center gap-8">
+          <div className="sponsors__card relative flex h-40 w-40 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.15)] transition-all hover:scale-105 hover:bg-orange-500/20 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]">
+            <span className="relative z-10 select-none text-sm font-medium text-white/50">Tu logo aquí</span>
           </div>
-        ))}
+          <div className="sponsors__card relative flex h-40 w-40 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.15)] transition-all hover:scale-105 hover:bg-orange-500/20 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]">
+            <span className="relative z-10 select-none text-sm font-medium text-white/50">Tu logo aquí</span>
+          </div>
+        </div>
       </div>
 
-      {/* CTA */}
-      <div className="mt-14 rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 to-black p-8 text-center sm:p-10 animate-fade-in-up delay-300">
-        <h3 className="text-2xl font-bold sm:text-3xl">
-          ¿Quieres ser patrocinador?
-        </h3>
-        <p className="mx-auto mt-4 max-w-xl text-base text-zinc-300 sm:text-lg">
-          Si tu empresa o comunidad quiere apoyar la difusión del software libre
-          en el Perú, ¡nos encantaría contar contigo!
-        </p>
-        <a
-          href={`mailto:${EVENT.contactEmail}?subject=Patrocinio%20FLISoL%20UTP%20${EVENT.year}`}
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-flisol-orange px-8 py-3 text-base font-semibold text-white transition duration-300 hover:scale-105 hover:bg-orange-500"
-          aria-label={`Enviar correo de patrocinio a ${EVENT.contactEmail}`}
-        >
-          <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
-            <path d="M3 8l9 6 9-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
-          </svg>
-          Escríbenos
-        </a>
-        <p className="mt-3 text-sm text-zinc-400">
-          {EVENT.contactEmail}
-        </p>
+      <div className="mb-12 w-full max-w-4xl">
+        <h3 className="sponsors__tier mb-6 text-2xl font-semibold text-flisol-orange">Venue</h3>
+        <div className="sponsors__logos flex flex-wrap justify-center gap-8">
+          <div className="sponsors__card relative flex h-40 w-40 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.15)] transition-all hover:scale-105 hover:bg-orange-500/20 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]">
+            <img
+              src="/images/utp.svg"
+              alt="UTP"
+              className="sponsors__logo sponsors__logo--venue relative z-10 w-24 object-contain"
+            />
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div className="mb-16 w-full max-w-4xl">
+        <h3 className="sponsors__tier mb-6 text-2xl font-semibold text-flisol-orange">Support</h3>
+        <div className="sponsors__logos flex flex-wrap justify-center gap-8">
+          <div className="sponsors__card relative flex h-40 w-40 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.15)] transition-all hover:scale-105 hover:bg-orange-500/20 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]">
+            <img
+              src="/images/sessionize-logo.svg"
+              alt="Sessionize"
+              className="sponsors__logo sponsors__logo--support relative z-10 w-24 object-contain"
+            />
+          </div>
+        </div>
+      </div>
+
+      <a 
+        href="https://felices25ruth.my.canva.site/brochure-flisol-utp-2026-sponsor"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn-white inline-flex items-center justify-center rounded-sm bg-white px-8 py-3 text-sm font-bold uppercase tracking-wider text-black transition-colors hover:bg-gray-200"
+      >
+        Quiero ser patrocinador
+      </a>
+      <p className="mt-4 text-sm text-gray-400">leadutp@gmail.com</p>
+    </section>
   )
 }
 

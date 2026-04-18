@@ -73,14 +73,6 @@ function Hero() {
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center animate-fade-in-up delay-400">
               <a
-                href={EVENT.sessionizeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-flisol-orange px-6 py-2.5 text-sm font-semibold text-white transition duration-300 hover:scale-105 hover:bg-orange-500 focus-visible:ring-2 focus-visible:ring-flisol-orange focus-visible:ring-offset-2 focus-visible:ring-offset-flisol-black"
-              >
-                Sé ponente →
-              </a>
-              <a
                 href="#registro"
                 className="inline-flex items-center justify-center rounded-full bg-white/10 border border-flisol-orange/60 px-6 py-2.5 text-sm font-semibold text-flisol-orange transition duration-300 hover:scale-105 hover:bg-flisol-orange hover:text-white focus-visible:ring-2 focus-visible:ring-flisol-orange focus-visible:ring-offset-2 focus-visible:ring-offset-flisol-black"
               >
