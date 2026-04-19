@@ -293,6 +293,59 @@ const SpeakersCarousel = () => {
                         YouTube
                       </a>
                     )}
+                    {selectedSpeaker.tiktok && (
+                      <a 
+                        href={selectedSpeaker.tiktok}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600/20 text-gray-200 rounded-full hover:bg-gray-600/30 transition-colors text-sm font-medium"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v3.96c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.96-.6 3.92-1.74 5.48-1.56 2.1-4.04 3.37-6.66 3.32-3.14-.05-6.13-1.92-7.51-4.75-1.04-2.14-1.09-4.71-.05-6.85 1.05-2.26 3.12-3.9 5.56-4.32v4c-1.28.23-2.5.94-3.23 2.01-.73 1.07-1.04 2.45-.64 3.66.41 1.25 1.5 2.27 2.77 2.62 1.34.37 2.82.09 3.93-.72 1.12-.81 1.78-2.19 1.78-3.57V0h3.91z"/>
+                        </svg>
+                        TikTok
+                      </a>
+                    )}
+                    {selectedSpeaker.web && (
+                      <a 
+                        href={selectedSpeaker.web}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-teal-600/20 text-teal-400 rounded-full hover:bg-teal-600/30 transition-colors text-sm font-medium"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="2" y1="12" x2="22" y2="12"></line>
+                          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        Sitio Web
+                      </a>
+                    )}
+                    {selectedSpeaker.facebook && (
+                      <a 
+                        href={selectedSpeaker.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-blue-700/20 text-blue-500 rounded-full hover:bg-blue-700/30 transition-colors text-sm font-medium"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                        </svg>
+                        Facebook
+                      </a>
+                    )}
+                    {selectedSpeaker.email && (
+                      <a 
+                        href={`mailto:${selectedSpeaker.email}`}
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-600/20 text-yellow-400 rounded-full hover:bg-yellow-600/30 transition-colors text-sm font-medium"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                          <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        Contacto
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

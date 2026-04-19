@@ -31,17 +31,22 @@ export const speakersData = [
     linkedin: "https://www.linkedin.com/in/jfloresxc/",
     image: "https://sessionize.com/image/f2d2-400o400o1-fcKCgWEkNB4VsFtWRWvYBC.png",
     bio: "Jose Flores Chamba es Ingeniero de Sistemas y Senior Front-End Developer con experiencia en entornos de alta demanda. Es uno de los organizadores de GDG Open Lima, uno de los grupos de desarrolladores de Google más representativos del Perú, donde lidera iniciativas de aprendizaje en tecnologías web, cloud y móvil. Además, ocupa la presidencia del Área de Programación del IEEE Computer Society de su capítulo estudiantil, promoviendo el desarrollo técnico y la cultura open source entre la comunidad universitaria. Su trabajo cotidiano combina el desarrollo frontend de producción con la investigación de herramientas emergentes que potencian la experiencia del desarrollador.",
-    sessionTitle: "Chrome DevTools + Antigravity: Debugging con Superpoderes",
-    sessionDesc: "En esta sesión vamos a ver cómo Antigravity permite que agentes de IA (como Claude o Gemini) tomen el control de las DevTools. Veremos cómo arreglar bugs de CSS, analizar el Performance y manipular el DOM en tiempo real usando lenguaje natural. ¡El fin del \"inspeccionar elemento\" manual ha llegado!"
+    sessionTitle: "¿No sabes diseñar una web? Skills y Agentes de IA al rescate",
+    sessionDesc: "¡Es hora de llevar tu web al siguiente nivel! En esta charla descubrirás cómo hemos transformado el sitio del evento usando el poder de los Agentes de IA.\n\nAprenderás a implementar Skills y Rules para optimizar tipografías, espaciados e interacciones de forma automática y sencilla. No necesitas ser un experto en diseño; solo necesitas estar atento para lograr resultados increíbles. "
   },
   {
     id: 4,
-    name: "Hugo Cassanova",
-    role: "Experto en Innovación y Transformación Digital",
+    name: "Hugo Casanova",
+    role: "Tecnología, Liderazgo y Desarrollo Humano",
     track: "🌱 Comunidad y Desarrollo Profesional",
-    linkedin: "https://www.linkedin.com/in/hcasanovam/",
+    linkedin: "https://www.linkedin.com/company/hugotech-latam",
+    instagram: "https://www.instagram.com/hugotech.pe/",
+    tiktok: "https://www.tiktok.com/@hugotech.pe",
+    web: "https://www.hugotech.pe/es",
+    facebook: "https://www.facebook.com/hugotechpe",
+    email: "hola@hugotech.pe",
     image: "https://sessionize.com/image/652e-400o400o1-7yaRd4yhbj9Aede1ibZANH.jpg",
-    bio: "Hugo Cassanova es un referente en innovación, producto y transformación digital en Latinoamérica, con más de 18 años de experiencia liderando equipos y proyectos tecnológicos vinculados a mercados de Estados Unidos. Ha dirigido iniciativas de software, analítica avanzada, inteligencia artificial y productos digitales, conectando siempre la visión data-driven con el liderazgo humano y la agilidad como filosofía de trabajo. Creador de HugoTech, una iniciativa que acompaña a jóvenes talentos del mundo tech desde una perspectiva que integra tecnología, liderazgo y desarrollo personal. Es además coach en liderazgo y bienestar, y se encuentra en formación como coach ontológico, profundizando en el desarrollo del ser como base para el crecimiento de personas, equipos y culturas organizacionales.",
+    bio: "Hugo Casanova es un referente en innovación, producto y transformación digital en Latinoamérica, con más de 18 años de experiencia liderando equipos y proyectos tecnológicos vinculados a mercados de Estados Unidos. Ha dirigido iniciativas de software, analítica avanzada, inteligencia artificial y productos digitales, conectando siempre la visión data-driven con el liderazgo humano y la agilidad como filosofía de trabajo. Creador de HugoTech, una iniciativa que acompaña a jóvenes talentos del mundo tech desde una perspectiva que integra tecnología, liderazgo y desarrollo personal. Es además coach en liderazgo y bienestar, y se encuentra en formación como coach ontológico, profundizando en el desarrollo del ser como base para el crecimiento de personas, equipos y culturas organizacionales.",
     sessionTitle: "Tu código no habla solo: habilidades humanas para crecer en el mundo open source",
     sessionDesc: "En tecnología, muchas veces se cree que crecer depende solo de cuánto sabes programar. Pero en el mundo open source también cuentan la manera en que colaboras, te comunicas, documentas, haces preguntas, recibes feedback y construyes con otros.\n\nEsta charla + QA busca abrir esa conversación desde situaciones reales del entorno tech, para mostrar que las habilidades humanas no son un complemento, sino una parte clave del desarrollo profesional. Porque no basta con escribir buen código: también importa cómo participas en comunidad, cómo aprendes con otros y cómo te posicionas dentro de espacios que pueden abrirte oportunidades reales de crecimiento."
   },
