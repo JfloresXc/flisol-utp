@@ -11,6 +11,7 @@ function TicketGenerator() {
   const [name, setName] = useState('')
   const [role, setRole] = useState('')
   const [photoPreview, setPhotoPreview] = useState(null)
+  const [photoImg, setPhotoImg] = useState(null)
   const [templateImg, setTemplateImg] = useState(null)
   const fileInputRef = useRef(null)
   const canvasRef = useRef(null)
@@ -25,7 +26,12 @@ function TicketGenerator() {
     const file = e.target.files[0]
     if (file) {
       const reader = new FileReader()
-      reader.onload = (ev) => setPhotoPreview(ev.target.result)
+      reader.onload = (ev) => {
+        setPhotoPreview(ev.target.result)
+        const img = new Image()
+        img.onload = () => setPhotoImg(img)
+        img.src = ev.target.result
+      }
       reader.readAsDataURL(file)
     }
   }
@@ -44,31 +50,27 @@ function TicketGenerator() {
       const circleY = h * 0.52
       const circleR = w * 0.18
 
-      if (photoPreview) {
-        const img = new Image()
-        img.onload = () => {
-          ctx.beginPath()
-          ctx.arc(circleX, circleY, circleR + 15, 0, Math.PI * 2)
-          ctx.fillStyle = '#f97316'
-          ctx.fill()
+      if (photoImg) {
+        ctx.beginPath()
+        ctx.arc(circleX, circleY, circleR + 15, 0, Math.PI * 2)
+        ctx.fillStyle = '#f97316'
+        ctx.fill()
 
-          ctx.save()
-          ctx.beginPath()
-          ctx.arc(circleX, circleY, circleR, 0, Math.PI * 2)
-          ctx.clip()
-          
-          const aspect = img.width / img.height
-          let sw, sh, sx, sy
-          if (aspect > 1) {
-            sh = img.height; sw = sh; sx = (img.width - sw) / 2; sy = 0
-          } else {
-            sw = img.width; sh = sw; sx = 0; sy = (img.height - sh) / 2
-          }
-          ctx.drawImage(img, sx, sy, sw, sh, circleX - circleR, circleY - circleR, circleR * 2, circleR * 2)
-          ctx.restore()
-          drawText(ctx, w, h)
+        ctx.save()
+        ctx.beginPath()
+        ctx.arc(circleX, circleY, circleR, 0, Math.PI * 2)
+        ctx.clip()
+        
+        const aspect = photoImg.width / photoImg.height
+        let sw, sh, sx, sy
+        if (aspect > 1) {
+          sh = photoImg.height; sw = sh; sx = (photoImg.width - sw) / 2; sy = 0
+        } else {
+          sw = photoImg.width; sh = sw; sx = 0; sy = (photoImg.height - sh) / 2
         }
-        img.src = photoPreview
+        ctx.drawImage(photoImg, sx, sy, sw, sh, circleX - circleR, circleY - circleR, circleR * 2, circleR * 2)
+        ctx.restore()
+        drawText(ctx, w, h)
       } else {
         ctx.beginPath()
         ctx.arc(circleX, circleY, circleR, 0, Math.PI * 2)
@@ -98,7 +100,7 @@ function TicketGenerator() {
         ctx.fillText(role || 'TU ROL O PROFESIÓN', w / 2, nameY + 90)
       }
     },
-    [name, role, photoPreview, templateImg],
+    [name, role, photoImg, templateImg],
   )
 
   useEffect(() => {
@@ -113,6 +115,17 @@ function TicketGenerator() {
     link.download = `pase-flisol-utp-2026.png`
     link.href = canvasRef.current.toDataURL('image/png')
     link.click()
+  }
+
+  const handleShare = () => {
+    handleDownload()
+    
+    // El alert detiene la ejecución hasta que el usuario le de "Aceptar"
+    alert('¡Imagen descargada! En LinkedIn, adjunta tu imagen.')
+    
+    const shareText = `Este 25 de abril seré parte de FLISoL UTP 2026, un espacio para aprender, compartir y conectar alrededor del software libre.\n\n¡Nos vemos en las charlas!\n\n#FlisolUTP #LeadUTP`
+    const linkedinUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareText)}`
+    window.open(linkedinUrl, '_blank')
   }
 
   return (
@@ -164,6 +177,7 @@ function TicketGenerator() {
                   </label>
                   <input
                     type="text"
+                    maxLength={30}
                     placeholder="Ej. Juan Pérez"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -176,6 +190,7 @@ function TicketGenerator() {
                   </label>
                   <input
                     type="text"
+                    maxLength={28}
                     placeholder="Ej. Desarrollador"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
@@ -194,7 +209,9 @@ function TicketGenerator() {
                   Obtener Pase
                 </button>
                 <button
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-bold text-white transition-all hover:bg-white/10"
+                  onClick={handleShare}
+                  disabled={!name}
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-bold text-white transition-all hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-white/5"
                 >
                   <Share2 className="h-5 w-5" />
                   Compartir
@@ -217,11 +234,6 @@ function TicketGenerator() {
                 height={CANVAS_H}
                 className="w-full h-auto rounded-[2rem] shadow-glow-purple"
               />
-              <div className="absolute bottom-10 left-10 right-10 flex justify-between items-end">
-                <div className="h-12 w-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
-                  <Sparkles className="h-6 w-6 text-flisol-orange" />
-                </div>
-              </div>
             </div>
           </motion.div>
 

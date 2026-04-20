@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { speakersData } from '../constants/speakersData.js';
@@ -23,35 +23,61 @@ const itemVariants = {
 }
 
 const SpeakersCarousel = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
   const [selectedSpeaker, setSelectedSpeaker] = useState(null);
-  const [slidesToShow, setSlidesToShow] = useState(3);
   const [isPaused, setIsPaused] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const carouselRef = useRef(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) setSlidesToShow(1);
-      else if (window.innerWidth < 1024) setSlidesToShow(2);
-      else setSlidesToShow(3);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const getScrollAmount = () => {
+    if (carouselRef.current && carouselRef.current.children.length > 0) {
+      return carouselRef.current.children[0].offsetWidth;
+    }
+    return 0;
+  };
+
+  const handleScroll = () => {
+    if (!carouselRef.current) return;
+    const scrollLeft = carouselRef.current.scrollLeft;
+    const itemWidth = getScrollAmount();
+    if (itemWidth > 0) {
+      const newIndex = Math.round(scrollLeft / itemWidth);
+      if (newIndex !== activeIndex) {
+        setActiveIndex(newIndex);
+      }
+    }
+  };
+
+  const scrollToSlide = (index) => {
+    if (!carouselRef.current) return;
+    const itemWidth = getScrollAmount();
+    carouselRef.current.scrollTo({ left: index * itemWidth, behavior: 'smooth' });
+  };
 
   const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1 >= speakersData.length - slidesToShow + 1 ? 0 : prev + 1));
+    if (!carouselRef.current) return;
+    const maxScrollLeft = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+    if (carouselRef.current.scrollLeft >= maxScrollLeft - 10) {
+      carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      carouselRef.current.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    }
   };
 
   const prevSlide = () => {
-    setActiveIndex((prev) => (prev - 1 < 0 ? speakersData.length - slidesToShow : prev - 1));
+    if (!carouselRef.current) return;
+    if (carouselRef.current.scrollLeft <= 10) {
+      const maxScrollLeft = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+      carouselRef.current.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+    } else {
+      carouselRef.current.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
     if (isPaused || selectedSpeaker) return;
     const interval = setInterval(() => nextSlide(), 3000);
     return () => clearInterval(interval);
-  }, [isPaused, selectedSpeaker, slidesToShow]);
+  }, [isPaused, selectedSpeaker]);
 
   return (
     <section
@@ -78,15 +104,6 @@ const SpeakersCarousel = () => {
             LÍDERES DE LA <br />
             <span className="outline-text text-white/10 uppercase">REVOLUCIÓN</span>
           </motion.h2>
-
-          <motion.div variants={itemVariants} className="flex items-center gap-4">
-            <button onClick={prevSlide} className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white transition-all duration-300 hover:border-flisol-orange hover:bg-flisol-orange">
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button onClick={nextSlide} className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white transition-all duration-300 hover:border-flisol-orange hover:bg-flisol-orange">
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </motion.div>
         </div>
       </motion.div>
 
@@ -95,14 +112,28 @@ const SpeakersCarousel = () => {
         whileInView="visible"
         viewport={{ once: true, margin: '-50px' }}
         variants={containerVariants}
-        className="relative overflow-visible px-4 sm:px-6 lg:px-8"
+        className="relative overflow-visible px-14 sm:px-20 lg:px-24 group/carousel"
       >
-        <motion.div
-          className="flex transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-          animate={{ x: `-${activeIndex * (100 / slidesToShow)}%` }}
+        {/* Navigation Buttons */}
+        <div className="absolute top-1/2 left-1 sm:left-4 lg:left-6 -translate-y-1/2 z-10 flex">
+          <button onClick={prevSlide} className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/10 bg-black/50 backdrop-blur-md text-white transition-all duration-300 hover:border-flisol-orange hover:bg-flisol-orange shadow-lg">
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+        </div>
+        
+        <div className="absolute top-1/2 right-1 sm:right-4 lg:right-6 -translate-y-1/2 z-10 flex">
+          <button onClick={nextSlide} className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/10 bg-black/50 backdrop-blur-md text-white transition-all duration-300 hover:border-flisol-orange hover:bg-flisol-orange shadow-lg">
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div
+          ref={carouselRef}
+          onScroll={handleScroll}
+          className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 -mb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {speakersData.map((speaker) => (
-            <div key={speaker.id} className="flex-shrink-0 px-3 flex justify-center" style={{ width: `${100 / slidesToShow}%` }}>
+            <div key={speaker.id} className="flex-shrink-0 snap-start snap-always px-3 flex justify-center w-full md:w-1/2 lg:w-1/3">
               <motion.div
                 whileHover={{ y: -10 }}
                 onClick={() => setSelectedSpeaker(speaker)}
@@ -138,7 +169,21 @@ const SpeakersCarousel = () => {
               </motion.div>
             </div>
           ))}
-        </motion.div>
+        </div>
+
+        {/* Indicators */}
+        <div className="flex justify-center gap-2 mt-12 mb-4">
+          {speakersData.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToSlide(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === activeIndex ? 'w-8 bg-flisol-orange' : 'w-2 bg-white/20 hover:bg-white/40'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </motion.div>
 
       <AnimatePresence>
